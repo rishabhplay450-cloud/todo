@@ -14,22 +14,21 @@ Use a provider that supports persistent disk/volume:
 - Railway: mount a persistent volume
 - Fly.io: attach a volume
 
-## 1) Deploy backend
+## 1) Deploy backend (Render)
 1. Push project to GitHub.
-2. Create backend service using folder `backend`.
-3. Build command: `npm install`
-4. Start command: `npm run dev`
-5. Add env vars:
+2. In Render, choose **New +** → **Blueprint** and select this repo.
+3. Render will read `render.yaml` automatically.
+4. Set env var:
    - `PORT=4000`
-   - `JWT_SECRET=<strong-random-secret>`
+   - `JWT_SECRET=<strong-random-secret>` (or keep auto-generated)
    - `CORS_ORIGIN=<your-frontend-url>`
-6. Attach persistent disk and ensure backend `data` folder is on that disk.
-7. Copy backend URL, e.g. `https://todo-api.onrender.com`.
+5. Confirm persistent disk is attached to `/opt/render/project/src/backend/data`.
+6. Deploy and copy backend URL, e.g. `https://todo-backend.onrender.com`.
 
-## 2) Deploy frontend
-1. Create frontend project from folder `frontend`.
-2. Build command: `npm run build`
-3. Output dir: `dist`
+## 2) Deploy frontend (Vercel)
+1. In Vercel, import this repo.
+2. Set root directory to `frontend`.
+3. `vercel.json` already defines Vite build/output.
 4. Add env var:
    - `VITE_API_BASE_URL=https://todo-api.onrender.com`
 5. Deploy and copy frontend URL.
@@ -40,6 +39,11 @@ Set backend `CORS_ORIGIN` to your final frontend URL (or comma-separated URLs if
 `CORS_ORIGIN=https://your-frontend.vercel.app`
 
 Then redeploy backend.
+
+## 3.1) Final quick check
+- Backend health: `https://<backend-url>/health`
+- Frontend opens: `https://<frontend-url>`
+- Signup works and data remains after refresh.
 
 ## 4) Verify
 - Open frontend URL.

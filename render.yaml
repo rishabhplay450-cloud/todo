@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: todo-backend
+    env: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm run start
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 4000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGIN
+        sync: false
+    disk:
+      name: todo-data
+      mountPath: /opt/render/project/src/backend/data
+      sizeGB: 1
