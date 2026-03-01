@@ -14,7 +14,3 @@ services:
         generateValue: true
       - key: CORS_ORIGIN
         sync: false
-    disk:
-      name: todo-data
-      mountPath: /opt/render/project/src/backend/data
-      sizeGB: 1
