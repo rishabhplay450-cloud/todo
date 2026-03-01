@@ -1,0 +1,24 @@
+# Dependencies
+**/node_modules/
+
+# Build outputs
+**/dist/
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# SQLite runtime files
+backend/data/*.sqlite
+backend/data/*.sqlite-shm
+backend/data/*.sqlite-wal
+
+# OS/editor
+.DS_Store
+Thumbs.db
